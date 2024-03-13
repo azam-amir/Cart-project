@@ -1,63 +1,15 @@
 import { Breadcrumb, Button, Layout, Menu, Typography, theme } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 function NavBar() {
   const items = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
-    // <header
-    //   className="navBarContainer"
-    //   style={{
-    //     background: "white",
-    //     height: "70px",
-    //     width: "102.7%",
-    //     marginTop: "-20px",
-    //     marginLeft: "-20px",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   <div
-    //     style={{ display: "flex", marginLeft: "20px", alignItems: "center" }}
-    //   >
-    //     {/* <span href={"/"} style={{ marginTop: "10px" }}> */}
-    //     <img src={Logo} style={{ cursor: "pointer" }} />
-    //     {/* </span> */}
-    //     <Link className="navLink" to={"/"}>
-    //       Home
-    //     </Link>
-    //     <Link className="navLink" to={"/cart"}>
-    //       Cart
-    //     </Link>
-    //     <Link className="navLink" to={"/settings"}>
-    //       Settings
-    //     </Link>
-    //   </div>
-    //   {items.length > 0 && (
-    //     <div>
-    //       <span
-    //         style={{ fontWeight: 600, fontSize: "18px", marginRight: "10px" }}
-    //       >
-    //         Cart Items: {items.length}
-    //       </span>
-    //       <Button
-    //         className="btn"
-    //         // type="primary"
-    //         onClick={() => {
-    //           navigate("/cart");
-    //         }}
-    //         style={{ marginRight: "10px" }}
-    //       >
-    //         Go to Cards
-    //       </Button>
-    //     </div>
-    //   )}
-    // </header>
     <Layout>
       <Header
         style={{
@@ -92,13 +44,13 @@ function NavBar() {
             gap: "15px",
           }}
         >
-          <Menu.Item>
+          <Menu.Item style={{ background: "transparent" }}>
             <Link to={"/"}>Home</Link>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item style={{ background: "transparent" }}>
             <Link to={"/cart"}>Cart</Link>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item style={{ background: "transparent" }}>
             <Link to={"/settings"}>Settings</Link>
           </Menu.Item>
         </Menu>
@@ -137,8 +89,10 @@ function NavBar() {
           }}
         >
           <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            {currentPath === "/cart" && "Cart"}
+            {currentPath === "/settings" && "Settings"}
+          </Breadcrumb.Item>
         </Breadcrumb>
         <div>
           <Outlet />
