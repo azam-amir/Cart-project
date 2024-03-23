@@ -12,7 +12,10 @@ const cardSlice = createSlice({
     remove(state, action) {
       return state.filter((item) => item.id !== action.payload);
     },
+    removeAll() {
+      return [];
+    },
   },
 });
-export const { add, remove } = cardSlice.actions;
+export const { add, remove, removeAll } = cardSlice.actions;
 export default cardSlice.reducer;

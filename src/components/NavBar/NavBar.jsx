@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Layout, Menu, Typography, theme } from "antd";
+import { Breadcrumb, Button, Layout, Menu } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -10,12 +10,13 @@ function NavBar() {
   const location = useLocation();
   const currentPath = location.pathname;
   return (
-    <Layout>
+    <Layout style={{}}>
       <Header
         style={{
           display: "flex",
           alignItems: "center",
           borderRadius: "10px",
+          background: "white",
         }}
       >
         <div
@@ -36,7 +37,7 @@ function NavBar() {
           />
         </div>
         <Menu
-          theme="dark"
+          theme={"light"}
           mode="horizontal"
           style={{
             flex: 2,
@@ -44,15 +45,15 @@ function NavBar() {
             gap: "15px",
           }}
         >
-          <Menu.Item style={{ background: "transparent" }}>
-            <Link to={"/"}>Home</Link>
-          </Menu.Item>
-          <Menu.Item style={{ background: "transparent" }}>
-            <Link to={"/cart"}>Cart</Link>
-          </Menu.Item>
-          <Menu.Item style={{ background: "transparent" }}>
-            <Link to={"/settings"}>Settings</Link>
-          </Menu.Item>
+          <Link to={"/"} style={{ color: "black", marginLeft: "20px" }}>
+            Home
+          </Link>
+          <Link to={"/cart"} style={{ color: "black", marginLeft: "20px" }}>
+            Cart
+          </Link>
+          <Link to={"/about"} style={{ color: "black", marginLeft: "20px" }}>
+            About
+          </Link>
         </Menu>
         {items.length > 0 && (
           <div>
@@ -61,7 +62,7 @@ function NavBar() {
                 fontWeight: 600,
                 fontSize: "18px",
                 marginRight: "10px",
-                color: "white",
+                color: "black",
               }}
             >
               Cart Items: {items.length}
@@ -101,6 +102,7 @@ function NavBar() {
       <Footer
         style={{
           textAlign: "center",
+          color: "black",
         }}
       >
         Azam Raza ©{new Date().getFullYear()} Created by @AzamRazaOfficial

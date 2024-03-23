@@ -27,7 +27,7 @@ function Products() {
       dispatch(add(product));
       messageApi.open({
         type: "success",
-        content: "Cart deleted Successfully!",
+        content: "Cart Added Successfully!",
         duration: 3,
       });
       setCartAlreadyExists(true);
@@ -38,7 +38,13 @@ function Products() {
       <Skeleton.Image style={{ width: "100px" }} />
       <Skeleton active paragraph={{ rows: 2 }} />
       {/* <Skeleton active /> */}
-      <Skeleton.Button active style={{ width: "100%", marginTop: "10px" }} />
+      <Skeleton.Button
+        active
+        style={{
+          width: "100%",
+          marginTop: "10px",
+        }}
+      />
     </div>
   );
   return (
@@ -48,17 +54,24 @@ function Products() {
         {isLoading
           ? [...Array(8)].map((_, index) => <ProductSkeleton key={index} />)
           : productData?.map((singleProduct) => {
-              const { id, image, title, price, description } = singleProduct;
+              const { id, image, title, price } = singleProduct;
               return (
-                <div key={id} className="card" style={{ flexWrap: "wrap" }}>
-                  <img src={image} alt={title} />
-                  <h4>{title}</h4>
-                  <h5>{price}</h5>
+                <div key={id} className={"card"}>
+                  <img
+                    style={{
+                      borderRadius: "10px",
+                      width: "100px",
+                      height: "130px",
+                      marginBottom: "10px",
+                    }}
+                    src={image}
+                    alt={title}
+                  />
+                  <h4 style={{ marginBottom: "10px" }}>{title}</h4>
+                  <h5 style={{ marginBottom: "10px" }}>{price}</h5>
                   <Button
-                    // className="btn"
                     type="primary"
                     onClick={() => addCartBtnClickHandler(singleProduct)}
-                    // disabled={cartAlreadyExists}
                   >
                     Add to cart
                   </Button>

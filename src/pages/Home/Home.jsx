@@ -6,7 +6,7 @@ function Home() {
     <div>
       {/* <h2>Welcome to my store</h2> */}
       <section>
-        <h3>Products</h3>
+        <h3 color={"black"}>Products</h3>
         <Products />
       </section>
     </div>
