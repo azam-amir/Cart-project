@@ -1,9 +1,9 @@
 import { Breadcrumb, Button, Layout, Menu } from "antd";
-import React from "react";
+import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useSelector } from "react-redux";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+
 function NavBar() {
   const items = useSelector((state) => state.cart);
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ function NavBar() {
               marginLeft: "-30px",
               borderRadius: "13px",
             }}
+            onClick={() => navigate("/")}
           />
         </div>
         <Menu
@@ -93,6 +94,7 @@ function NavBar() {
           <Breadcrumb.Item>
             {currentPath === "/cart" && "Cart"}
             {currentPath === "/settings" && "Settings"}
+            {currentPath === "/about" && "About"}
           </Breadcrumb.Item>
         </Breadcrumb>
         <div>

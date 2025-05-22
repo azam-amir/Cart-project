@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../store/cartSlice";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Skeleton, message } from "antd";
-const apiBaseUrl = "http://fakestoreapi.com/products";
+import { useDispatch, useSelector } from "react-redux";
+import { add } from "../../store/cartSlice";
+const apiBaseUrl = "https://fakestoreapi.com/products";
 
 function Products() {
   const [messageApi, contextHolder] = message.useMessage();
-  const [cartAlreadyExists, setCartAlreadyExists] = useState(false);
   const dispatch = useDispatch();
   const { data: productData, isLoading } = useQuery({
     queryKey: ["getProducts"],
@@ -30,7 +28,6 @@ function Products() {
         content: "Cart Added Successfully!",
         duration: 3,
       });
-      setCartAlreadyExists(true);
     }
   };
   const ProductSkeleton = () => (
