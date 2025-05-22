@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import About from "./pages/About/About";
+import ProductDetail from "./components/Products/ProductDetail";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/about" element={<About />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
             </Route>
           </Routes>
         </BrowserRouter>

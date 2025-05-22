@@ -2,11 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Skeleton, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/cartSlice";
-const apiBaseUrl = "https://fakestoreapi.com/products";
+import { useNavigate } from "react-router-dom";
+import { memo } from "react";
+export const apiBaseUrl = "https://fakestoreapi.com/products";
 
 function Products() {
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: productData, isLoading } = useQuery({
     queryKey: ["getProducts"],
     queryFn: () => fetch(`${apiBaseUrl}`).then((res) => res.json()),
@@ -60,11 +63,18 @@ function Products() {
                       width: "100px",
                       height: "130px",
                       marginBottom: "10px",
+                      cursor: "pointer",
                     }}
                     src={image}
                     alt={title}
+                    onClick={() => navigate("/product/:id".replace(":id", id))}
                   />
-                  <h4 style={{ marginBottom: "10px" }}>{title}</h4>
+                  <h4
+                    style={{ marginBottom: "10px", cursor: "pointer" }}
+                    onClick={() => navigate("/product/:id".replace(":id", id))}
+                  >
+                    {title}
+                  </h4>
                   <h5 style={{ marginBottom: "10px" }}>{price}</h5>
                   <Button
                     type="primary"
@@ -80,4 +90,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default memo(Products);
