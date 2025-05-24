@@ -29,6 +29,10 @@ function NavBar() {
     };
   }, [isSearchModalVisible]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPath]);
+
   const showSearchModal = () => {
     setIsSearchModalVisible(true);
   };
