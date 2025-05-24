@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button, Col, message, Rate, Row, Skeleton, Typography } from "antd";
+import { motion } from "framer-motion";
 import { memo } from "react";
 import { useParams } from "react-router-dom";
 import useCartStore from "../../store/useCartStore";
 import { apiBaseUrl } from "./Products";
-import { motion } from "framer-motion";
 
 const { Title, Paragraph, Text } = Typography;
 

@@ -1,7 +1,7 @@
 import { CloseCircleFilled } from "@ant-design/icons";
 import { Breadcrumb, Button, Form, Input, Layout } from "antd";
 import { Content, Footer } from "antd/es/layout/layout";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import CustomHeader from "../CustomHeader/CustomHeader";
 
@@ -105,4 +105,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default memo(NavBar);

@@ -1,7 +1,8 @@
 import { Button } from "antd";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Products from "../../components/Products/Products";
-import { motion } from "framer-motion";
+import { memo } from "react";
 
 function Home() {
   return (
@@ -81,4 +82,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default memo(Home);

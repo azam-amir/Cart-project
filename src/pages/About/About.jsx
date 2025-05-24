@@ -1,6 +1,6 @@
-import React, { memo } from "react";
 import { Descriptions } from "antd";
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 // Animation variants
 const containerVariants = {

@@ -3,7 +3,6 @@ import { Suspense, useMemo } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound/NotFound";
 import { AUTHENTICATED_ROUTES } from "./routes/RouteConstant";
-import "../src/index.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
