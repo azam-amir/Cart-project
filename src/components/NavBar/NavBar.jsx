@@ -1,112 +1,100 @@
-import { Breadcrumb, Button, Layout, Menu } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
-import { useSelector } from "react-redux";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../../assets/images/logo.png";
+import { CloseCircleFilled } from "@ant-design/icons";
+import { Breadcrumb, Button, Form, Input, Layout } from "antd";
+import { Content, Footer } from "antd/es/layout/layout";
+import { useEffect, useRef, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import CustomHeader from "../CustomHeader/CustomHeader";
 
 function NavBar() {
-  const items = useSelector((state) => state.cart);
-  const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+  const [isSearchModalVisible, setIsSearchModalVisible] = useState(false);
+  const [form] = Form.useForm();
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchModalVisible(false);
+      }
+    }
+
+    if (isSearchModalVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchModalVisible]);
+
+  const showSearchModal = () => {
+    setIsSearchModalVisible(true);
+  };
+
+  const handleSearchCancel = () => {
+    setIsSearchModalVisible(false);
+    form.resetFields();
+  };
+
+  const onFinish = (values) => {
+    const query = values.search.trim();
+    if (query) {
+      navigate(`/products?q=${encodeURIComponent(query)}`);
+      setIsSearchModalVisible(false);
+      form.resetFields();
+    }
+  };
+
   return (
-    <Layout style={{}}>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          borderRadius: "10px",
-          background: "white",
-        }}
-      >
+    <Layout style={{ minHeight: "100vh" }}>
+      <CustomHeader showSearchModal={showSearchModal} />
+
+      {/* Search Modal */}
+      <Form form={form} onFinish={onFinish}>
         <div
-          className="demo-logo"
-          style={{ display: "flex", alignItems: "center" }}
+          ref={searchRef}
+          className={`top-search-bar ${isSearchModalVisible ? "show" : ""}`}
         >
-          <img
-            src={Logo}
-            alt="Logo"
+          <Form.Item name="search" style={{ margin: 0 }}>
+            <Input
+              placeholder="Search products..."
+              style={{ width: "300px", marginRight: "10px" }}
+              allowClear
+            />
+          </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Search
+          </Button>
+          <CloseCircleFilled
             style={{
+              position: "absolute",
               cursor: "pointer",
-              background: "white",
-              height: "45px",
-              width: "55px",
-              marginLeft: "-30px",
-              borderRadius: "13px",
+              top: -5,
+              right: -5,
             }}
-            onClick={() => navigate("/")}
+            onClick={handleSearchCancel}
           />
         </div>
-        <Menu
-          theme={"light"}
-          mode="horizontal"
-          style={{
-            flex: 2,
-            minWidth: 0,
-            gap: "15px",
-          }}
-        >
-          <Link to={"/"} style={{ color: "black", marginLeft: "20px" }}>
-            Home
-          </Link>
-          <Link to={"/cart"} style={{ color: "black", marginLeft: "20px" }}>
-            Cart
-          </Link>
-          <Link to={"/about"} style={{ color: "black", marginLeft: "20px" }}>
-            About
-          </Link>
-        </Menu>
-        {items.length > 0 && (
-          <div>
-            <span
-              style={{
-                fontWeight: 600,
-                fontSize: "18px",
-                marginRight: "10px",
-                color: "black",
-              }}
-            >
-              Cart Items: {items.length}
-            </span>
-            <Button
-              // className="btn"
-              type="primary"
-              onClick={() => {
-                navigate("/cart");
-              }}
-            >
-              Go to Cards
-            </Button>
-          </div>
-        )}
-      </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
-        <Breadcrumb
-          style={{
-            margin: "16px 0",
-          }}
-        >
+      </Form>
+
+      <Content style={{ padding: "0 48px", margin: "16px 0" }}>
+        <Breadcrumb style={{ margin: "16px 0" }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
             {currentPath === "/cart" && "Cart"}
             {currentPath === "/settings" && "Settings"}
             {currentPath === "/about" && "About"}
+            {currentPath === "/products" && "Products"}
           </Breadcrumb.Item>
         </Breadcrumb>
-        <div>
+        <div style={{ padding: 24, minHeight: 280 }}>
           <Outlet />
         </div>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-          color: "black",
-        }}
-      >
+
+      <Footer style={{ textAlign: "center", color: "black" }}>
         Azam Raza ©{new Date().getFullYear()} Created by @AzamRazaOfficial
       </Footer>
     </Layout>
