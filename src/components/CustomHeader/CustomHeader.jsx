@@ -51,35 +51,15 @@ const CustomHeader = ({ showSearchModal }) => {
           : "0 2px 4px rgba(0,0,0,0.05)",
       }}
       transition={{ duration: 0.3 }}
-      style={{
-        position: "sticky",
-        zIndex: 999,
-        background: "white",
-        padding: "0 24px",
-      }}
+      className="sticky z-[999] bg-white !p-[0_24px]"
     >
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          background: "transparent",
-          padding: 0,
-          height: "80px",
-          justifyContent: "space-between",
-        }}
-      >
+      <Header className="flex items-center justify-between !bg-transparent !p-0 !h-[80px]">
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div className="flex items-center gap-[10px]">
           <img
             src={Logo}
             alt="Logo"
-            style={{
-              cursor: "pointer",
-              background: "white",
-              height: "45px",
-              width: "55px",
-              borderRadius: "13px",
-            }}
+            className="cursor-pointer !h-[45px] !w-[55px]"
             onClick={() => navigate("/")}
           />
         </div>
@@ -89,18 +69,13 @@ const CustomHeader = ({ showSearchModal }) => {
           <Menu
             theme="light"
             mode="horizontal"
-            style={{
-              flex: 1,
-              minWidth: 0,
-              gap: "15px",
-              borderBottom: "none",
-            }}
+            className="flex-[1] min-w-0 gap-[15px] border-b-none"
           >
             {mobileLinks?.map((item, index) => (
               <Link
                 key={index}
                 to={item?.path}
-                style={{ color: "black", marginLeft: "20px" }}
+                className="!text-black !ml-[20px]"
               >
                 {item?.title}
               </Link>
@@ -109,20 +84,20 @@ const CustomHeader = ({ showSearchModal }) => {
         )}
 
         {/* Right Icons */}
-        <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        <div className="flex items-center gap-[15px]">
           <Button
             type="link"
-            icon={<SearchOutlined style={{ fontSize: "18px" }} />}
+            icon={<SearchOutlined className="!text-[18px]" />}
             onClick={showSearchModal}
-            style={{ color: "black" }}
+            className="!text-black"
           />
 
           <Badge count={cartProducts?.length} overflowCount={99}>
             <Button
               type="link"
-              icon={<ShoppingCartOutlined style={{ fontSize: "20px" }} />}
+              icon={<ShoppingCartOutlined className="!text-[20px]" />}
               onClick={() => navigate("/cart")}
-              style={{ color: "black" }}
+              className="!text-black"
             />
           </Badge>
 
@@ -132,7 +107,7 @@ const CustomHeader = ({ showSearchModal }) => {
               type="link"
               icon={<MenuOutlined />}
               onClick={() => setDrawerVisible(true)}
-              style={{ color: "black" }}
+              className="!text-black"
             />
           )}
         </div>
@@ -146,32 +121,12 @@ const CustomHeader = ({ showSearchModal }) => {
         height={100}
         className="header-top-drawer"
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: 6,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              // flexDirection: "column",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
+        <div className="flex justify-between !mt-[6px]">
+          <div className="flex items-center gap-[10px]">
             <img
               src={Logo}
               alt="Logo"
-              style={{
-                cursor: "pointer",
-                background: "white",
-                height: "45px",
-                width: "55px",
-                marginTop: 5,
-                marginRight: 10,
-              }}
+              className="cursor-pointer !h-[45px] !w-[55px] !mt-[5px] !mr-[10px]"
               onClick={() => navigate("/")}
             />
             {mobileLinks?.map((item, index) => (
@@ -179,14 +134,14 @@ const CustomHeader = ({ showSearchModal }) => {
                 key={index}
                 to={item?.path}
                 onClick={() => setDrawerVisible(false)}
-                style={{ color: "black" }}
+                className="!text-black"
               >
                 {item?.title}
               </Link>
             ))}
           </div>
           <CloseOutlined
-            style={{ cursor: "pointer", marginRight: 27, fontSize: 18 }}
+            className="cursor-pointer !mr-[27px] !text-[18px]"
             onClick={() => setDrawerVisible(false)}
           />
         </div>

@@ -3,54 +3,25 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Products from "../../components/Products/Products";
 import { memo } from "react";
+import { H1, H2, P } from "../../components/CustomTypography/CustomTypography";
 
 function Home() {
   return (
-    <div
-      style={{
-        padding: "20px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        width: "100%",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="!p-5 max-w-[1200px] !mx-auto w-full box-border">
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        style={{
-          borderRadius: "12px",
-          textAlign: "center",
-          marginBottom: "50px",
-          marginTop: "-20px",
-          padding: "0 15px",
-        }}
+        className="rounded-[12px] text-center !mb-[50px] !-mt-5 !px-[15px]"
       >
-        <h1
-          style={{
-            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-            color: "#333",
-            marginBottom: "10px",
-            lineHeight: "1.3",
-          }}
-        >
+        <H1 className="text-[#333] text-[clamp(1.8rem, 4vw, 2.5rem)] !mb-[10px] leading-[1.3]">
           Welcome to Azam's Store
-        </h1>
-        <p
-          style={{
-            fontSize: "clamp(1rem, 2vw, 1.1rem)",
-            color: "#555",
-            marginBottom: "20px",
-            maxWidth: "800px",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
+        </H1>
+        <P className="!text-[17px] !text-[#555] mb-[20px]">
           Explore high quality products at affordable prices.
-        </p>
+        </P>
         <Link to="/products">
-          <Button type="primary" size="large" style={{ marginBottom: "10px" }}>
+          <Button type="primary" size="large" className="!mb-[10px]">
             View All Products
           </Button>
         </Link>
@@ -60,19 +31,11 @@ function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        style={{ padding: "0 15px" }}
+        className="!p-[0_15px]"
       >
-        <h2
-          style={{
-            color: "#333",
-            marginBottom: "20px",
-            fontSize: "clamp(1.4rem, 3vw, 1.8rem)",
-          }}
-        >
-          Featured Products
-        </h2>
+        <H2 className="!mb-[20px] !text-[#333]">Featured Products</H2>
         <Products limit={3} />
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <div className="text-center !mt-[20px]">
           <Link to="/products">
             <Button>See More Products</Button>
           </Link>

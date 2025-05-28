@@ -5,6 +5,7 @@ import { memo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCartStore from "../../store/useCartStore";
 import { IMAGES } from "../../utils/image.constant";
+import { H3, H4, H5, P } from "../CustomTypography/CustomTypography";
 
 export const apiBaseUrl = "https://fakestoreapi.com/products";
 
@@ -55,42 +56,18 @@ function Products({ limit }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      style={{
-        background: "#fff",
-        borderRadius: "12px",
-        padding: "20px",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height: "100%",
-      }}
+      className="bg-white rounded-[12px] !p-5 shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center h-full"
     >
-      <Skeleton.Image
-        active
-        style={{ width: "250px", height: "200px", marginBottom: "20px" }}
-      />
-      <Skeleton active paragraph={{ rows: 2 }} style={{ width: "100%" }} />
-      <Skeleton.Button
-        active
-        style={{
-          width: "100%",
-          marginTop: "10px",
-        }}
-      />
+      <Skeleton.Image activeclassName="w-[250px] h-[200px] !mb-5" />
+      <Skeleton active paragraph={{ rows: 2 }} className="w-full" />
+      <Skeleton.Button active className="w-full !mt-2.5" />
     </motion.div>
   );
 
   return (
     <div>
       {contextHolder}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "24px",
-        }}
-      >
+      <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         {isLoading ? (
           [...Array(8)]?.map((_, index) => (
             <ProductSkeleton key={`skeleton-${index}`} />
@@ -100,36 +77,19 @@ function Products({ limit }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            style={{
-              gridColumn: "1 / -1",
-              textAlign: "center",
-              padding: "60px 20px",
-              borderRadius: "12px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="col-span-full text-center !py-[60px] !px-5 rounded-[12px] flex flex-col items-center justify-center"
           >
             <img
               src={IMAGES.PRODUCT_NOT_FOUND}
               alt="Not Found"
-              style={{
-                width: "115px",
-                height: "115px",
-                // marginBottom: "20px",
-                filter:
-                  "brightness(0) saturate(100%) invert(27%) sepia(98%) saturate(2592%) hue-rotate(208deg) brightness(102%) contrast(101%)",
-              }}
+              className="!w-[115px] !h-[115px] custom-filter"
             />
-            <h3
-              style={{ fontSize: "20px", color: "#444", marginBottom: "10px" }}
-            >
+            <H3 className="!text-[20px] !text-[#444] !mb-2.5">
               No products found
-            </h3>
-            <p style={{ color: "#888", fontSize: "16px" }}>
+            </H3>
+            <P className="!text-[#888] !text-[16px]">
               We couldn’t find anything for <strong>"{query}"</strong>
-            </p>
+            </P>
           </motion.div>
         ) : (
           productToShow?.map((singleProduct) => {
@@ -144,82 +104,39 @@ function Products({ limit }) {
                   y: -10,
                   boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
                 }}
-                style={{
-                  background: "#fff",
-                  borderRadius: "12px",
-                  padding: "20px",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
+                className="bg-white rounded-[12px] !p-5 shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center cursor-pointer overflow-hidden relative"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    marginBottom: "15px",
-                    overflow: "hidden",
-                    borderRadius: "8px",
-                  }}
+                  className="w-full h-[200px] !mb-[15px] overflow-hidden rounded-[8px]"
                 >
                   <img
                     src={image}
                     alt={title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      transition: "transform 0.3s ease",
-                    }}
+                    className="!w-full !h-full object-contain transition-transform duration-300 ease-in-out"
                     onClick={() => navigate("/product/:id".replace(":id", id))}
                   />
                 </motion.div>
 
-                <h4
-                  style={{
-                    marginBottom: "10px",
-                    cursor: "pointer",
-                    textAlign: "center",
-                    fontSize: "16px",
-                    fontWeight: "500",
-                    flexGrow: 1,
-                  }}
+                <H4
+                  className="!text-[16px] !font-[500]"
                   onClick={() => navigate("/product/:id".replace(":id", id))}
                 >
                   {title}
-                </h4>
+                </H4>
 
-                <h5
-                  style={{
-                    marginBottom: "15px",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    color: "#1890ff",
-                  }}
-                >
+                <H5 className="!mb-[15px] !text-[18px] !text-[#1890ff] !font-bold">
                   ${price}
-                </h5>
+                </H5>
 
-                <motion.div
-                  whileTap={{ scale: 0.95 }}
-                  style={{ width: "100%" }}
-                >
+                <motion.div whileTap={{ scale: 0.95 }} className="w-full">
                   <Button
                     type="primary"
                     onClick={(e) => {
                       e.stopPropagation();
                       addCartBtnClickHandler(singleProduct);
                     }}
-                    style={{
-                      width: "100%",
-                      fontWeight: "500",
-                      letterSpacing: "0.5px",
-                    }}
+                    className="w-full font-medium tracking-wide"
                   >
                     Add to cart
                   </Button>
@@ -229,21 +146,7 @@ function Products({ limit }) {
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    style={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "10px",
-                      background: "#52c41a",
-                      color: "white",
-                      borderRadius: "50%",
-                      width: "30px",
-                      height: "30px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                    }}
+                    className="absolute top-2.5 right-2.5 bg-[#52c41a] text-white rounded-full w-[30px] h-[30px] flex items-center justify-center text-[12px] font-bold"
                   >
                     ✓
                   </motion.div>

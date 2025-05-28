@@ -2,6 +2,7 @@ import { Button, Popconfirm, Typography, message } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
 import { memo } from "react";
 import useCartStore from "../../store/useCartStore";
+import { H4, H5 } from "../../components/CustomTypography/CustomTypography";
 
 function Cart() {
   const [messageApi, contextHolder] = message.useMessage();
@@ -46,13 +47,7 @@ function Cart() {
   };
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-      }}
-    >
+    <div className="!p-5 max-w-[1200px] !mx-auto">
       {contextHolder}
 
       <AnimatePresence>
@@ -61,21 +56,9 @@ function Cart() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "40vh",
-              textAlign: "center",
-            }}
+            className="flex justify-center items-center h-[40vh] text-center"
           >
-            <Typography
-              style={{
-                fontSize: "30px",
-                fontWeight: 800,
-                color: "#50504973",
-              }}
-            >
+            <Typography className="!text-[30px] !font-extrabold !text-[#50504973]">
               Your cart is empty.
             </Typography>
           </motion.div>
@@ -86,21 +69,12 @@ function Cart() {
             variants={containerVariants}
           >
             {/* Header */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "30px",
-              }}
-            >
+            <div className="flex flex-wrap justify-between items-center gap-[10px] !mb-[30px]">
               <motion.h2
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                style={{ fontSize: "24px", margin: 0 }}
+                className="text-[24px] !m-0"
               >
                 Your Cart ({cartProducts.length})
               </motion.h2>
@@ -119,11 +93,7 @@ function Cart() {
                   <Button
                     danger
                     type="primary"
-                    style={{
-                      padding: "0 20px",
-                      height: "40px",
-                      fontWeight: "500",
-                    }}
+                    className="!px-5 !h-10 !font-medium"
                   >
                     Clear Cart
                   </Button>
@@ -132,7 +102,7 @@ function Cart() {
             </div>
 
             {/* Cart items */}
-            <div style={{ display: "grid", gap: "20px" }}>
+            <div className="grid gap-5">
               <AnimatePresence>
                 {cartProducts?.map(({ id, image, title, price }) => (
                   <motion.div
@@ -141,43 +111,20 @@ function Cart() {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      alignItems: "center",
-                      gap: "20px",
-                      background: "#fff",
-                      borderRadius: "8px",
-                      padding: "20px",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                    }}
+                    className="flex flex-wrap items-center gap-5 bg-white rounded-[8px] !p-5 shadow-md"
                   >
                     <motion.img
                       src={image}
                       alt={title}
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        objectFit: "contain",
-                        borderRadius: "4px",
-                        flexShrink: 0,
-                      }}
+                      className="w-[80px] h-[80px] object-contain rounded-[4px] flex-shrink-0"
                       whileHover={{ scale: 1.1 }}
                     />
 
-                    <div style={{ flex: 1, minWidth: "200px" }}>
-                      <h4 style={{ margin: 0, marginBottom: "8px" }}>
-                        {title}
-                      </h4>
-                      <h5
-                        style={{
-                          margin: 0,
-                          color: "#1890ff",
-                          fontSize: "16px",
-                        }}
-                      >
+                    <div className="flex-1 min-w-[200px]">
+                      <H4 className="!text-[16px] !mb-[8px]">{title}</H4>
+                      <H5 className="!m-0 text-[#1890ff] !text-[16px]">
                         ${price}
-                      </h5>
+                      </H5>
                     </div>
 
                     <Popconfirm
@@ -193,11 +140,7 @@ function Cart() {
                       >
                         <Button
                           danger
-                          style={{
-                            padding: "0 20px",
-                            height: "36px",
-                            whiteSpace: "nowrap",
-                          }}
+                          className="!px-5 !h-[36px] whitespace-nowrap"
                         >
                           Remove
                         </Button>

@@ -60,23 +60,10 @@ function About() {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      style={{
-        padding: "20px 15px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        width: "100%",
-        boxSizing: "border-box",
-      }}
+      className="!px-[15px] !py-5 max-w-[1200px] !mx-auto w-full box-border"
     >
       <motion.h1
-        style={{
-          color: "#5a5a5a",
-          marginBottom: "30px",
-          marginTop: "0",
-          textAlign: "center",
-          fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
-          lineHeight: "1.3",
-        }}
+        className="text-[#5a5a5a] !mb-[30px] !mt-0 text-center !text-[35px] leading-[1.3]"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -86,12 +73,7 @@ function About() {
 
       <motion.div
         variants={containerVariants}
-        style={{
-          marginTop: "30px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
+        className="!mt-[30px] flex flex-col gap-[20px]"
       >
         {aboutData?.map(({ label, content }, i) => (
           <motion.div key={i} variants={itemVariants}>

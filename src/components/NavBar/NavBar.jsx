@@ -52,7 +52,7 @@ function NavBar() {
   };
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout className="min-h-[100vh]">
       <CustomHeader showSearchModal={showSearchModal} />
 
       {/* Search Modal */}
@@ -61,10 +61,10 @@ function NavBar() {
           ref={searchRef}
           className={`top-search-bar ${isSearchModalVisible ? "show" : ""}`}
         >
-          <Form.Item name="search" style={{ margin: 0 }}>
+          <Form.Item name="search" className="!m-0">
             <Input
               placeholder="Search products..."
-              style={{ width: "300px", marginRight: "10px" }}
+              className="!mr-[10px] !w-[300px]"
               allowClear
             />
           </Form.Item>
@@ -72,19 +72,14 @@ function NavBar() {
             Search
           </Button>
           <CloseCircleFilled
-            style={{
-              position: "absolute",
-              cursor: "pointer",
-              top: -5,
-              right: -5,
-            }}
+            className="absolute cursor-pointer -top-[5px] -right-[5px]"
             onClick={handleSearchCancel}
           />
         </div>
       </Form>
 
-      <Content style={{ padding: "0 48px", margin: "16px 0" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
+      <Content className="!p-[0_48px] !m-[16px_0]">
+        <Breadcrumb className="!m-[16px_0]">
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
             {currentPath === "/cart" && "Cart"}
@@ -93,12 +88,12 @@ function NavBar() {
             {currentPath === "/products" && "Products"}
           </Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ padding: 24, minHeight: 280 }}>
+        <div className="!p-[24px] min-h-[280px]">
           <Outlet />
         </div>
       </Content>
 
-      <Footer style={{ textAlign: "center", color: "black" }}>
+      <Footer className="text-center text-black">
         Azam Raza ©{new Date().getFullYear()} Created by @AzamRazaOfficial
       </Footer>
     </Layout>

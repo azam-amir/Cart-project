@@ -6,16 +6,7 @@ function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 20px",
-        background: "#f0f2f5",
-      }}
-    >
+    <div className="min-h-[100vh] flex items-center justify-center p-[0_20px] bg-[#f0f2f5]">
       <Result
         status="404"
         title="404"

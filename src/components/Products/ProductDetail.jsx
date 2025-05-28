@@ -9,21 +9,13 @@ import { apiBaseUrl } from "./Products";
 const { Title, Paragraph, Text } = Typography;
 
 const ProductDetailSkeleton = () => (
-  <Row
-    style={{
-      maxWidth: 900,
-      margin: "40px auto",
-      padding: 20,
-      border: "1px solid #f0f0f0",
-      borderRadius: 8,
-    }}
-  >
+  <Row className="max-w-[900px] !m-[40px_auto] !p-[20px] border-[1px] border-solid border-[#f0f0f0] rounded-[8px]">
     <Col span={10}>
-      <Skeleton.Image style={{ width: "250px", height: 300 }} />
+      <Skeleton.Image className="!w-[250px] !h-[300px]" />
     </Col>
-    <Col span={14} style={{ paddingLeft: 20 }}>
+    <Col span={14} className="!pl-[20px]">
       <Skeleton active paragraph={{ rows: 4 }} />
-      <Skeleton.Button style={{ width: 120, marginTop: 20 }} active />
+      <Skeleton.Button className="!w-[120px] !mt-[20px]" active />
     </Col>
   </Row>
 );
@@ -72,75 +64,47 @@ const ProductDetail = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <Row
-          style={{
-            maxWidth: 900,
-            margin: "40px auto",
-            padding: 30,
-            border: "1px solid #eaeaea",
-            borderRadius: 12,
-            backgroundColor: "#fff",
-            boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-            position: "relative",
-          }}
+          className="!max-w-[900px] !mx-auto !my-[40px] !p-[30px] !border !border-[#eaeaea] rounded-[12px] bg-white shadow-[0_8px_20px_rgba(0,0,0,0.1)] relative"
           gutter={[24, 24]}
         >
           <Col xs={24} sm={10}>
             <img
               src={foundProduct?.image}
               alt={foundProduct?.title}
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: 12,
-                objectFit: "contain",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-              }}
+              className="!w-full !h-auto !rounded-[12px] object-contain shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
             />
           </Col>
           <Col xs={24} sm={14}>
-            <Title level={3} style={{ color: "#222" }}>
+            <Title level={3} className="!text-[#222]">
               {foundProduct?.title}
             </Title>
-            <Paragraph style={{ fontSize: "1rem", color: "#555" }}>
+            <Paragraph className="!text-[#555] !text-[1rem]">
               {foundProduct?.description}
             </Paragraph>
-            <Text strong style={{ fontSize: "1.1rem" }}>
+            <Text strong className="!text-[1.1rem]">
               Category:{" "}
             </Text>
-            <Text style={{ fontSize: "1rem", color: "#666" }}>
+            <Text className="!text-[#666] !text-[1rem]">
               {foundProduct?.category}
             </Text>
             <br />
-            <div style={{ marginTop: "10px" }}>
-              <Text strong style={{ fontSize: "1.2rem" }}>
+            <div className="!mt-[10px]">
+              <Text strong className="!text-[1.2rem]">
                 Price:{" "}
               </Text>
-              <Text style={{ fontSize: "1.2rem", color: "#1890ff" }}>
+              <Text className="!text-[1.2rem] text-[#1890ff]">
                 ${foundProduct?.price}
               </Text>
             </div>
             <br />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "-10px",
-              }}
-            >
+            <div className="flex items-center !-mt-[10px]">
               <Rate
                 allowHalf
                 defaultValue={foundProduct?.rating?.rate}
                 disabled
-                style={{ fontSize: "18px" }}
+                className="!text-[18px]"
               />
-              <span
-                style={{
-                  marginLeft: "10px",
-                  color: "#888",
-                  fontSize: "0.9rem",
-                  fontWeight: "500",
-                }}
-              >
+              <span className="!text-[0.9rem] !font-[500] !text-[#888] !ml-[10px]">
                 ({foundProduct?.rating?.count} reviews)
               </span>
             </div>
@@ -148,7 +112,7 @@ const ProductDetail = () => {
             <Button
               type="primary"
               size="large"
-              style={{ marginTop: 20, borderRadius: 6 }}
+              className="!mt-[20px] !rounded-[6px]"
               onClick={() => addCartBtnClickHandler(foundProduct)}
             >
               Add to Cart
